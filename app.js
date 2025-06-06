@@ -73,7 +73,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
 }));
 
 // App routes
-app.use('/api', require('./server/route/index'));
+app.use('/', require('./server/route/index'));
 
 // Start server
 app.listen(PORT, () => {
