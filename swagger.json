@@ -5,9 +5,9 @@
     "description": "API docs for team store",
     "version": "2.0.0"
   },
-  "host": "localhost:5000",
+  "host": "teams-project.onrender.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {

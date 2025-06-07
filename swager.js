@@ -5,8 +5,8 @@ const doc = {
         title: 'Item Store API',
         description: 'API documentation for the Item Store application'
     },
-    host: 'localhost:5000',
-    schemes: ['http'],
+    host: 'teams-project.onrender.com',
+    schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
