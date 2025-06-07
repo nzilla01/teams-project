@@ -37,7 +37,7 @@ app
         next();
     })
 
-    .use(cors({ methods: 'GET, POST, DELETE, OPTIONS, PATCH', origin: '*' }))
+    // .use(cors({ methods: 'GET, POST, DELETE, OPTIONS, PATCH', origin: '*' }))
     
     .use(express.urlencoded({ extended: true }));
  

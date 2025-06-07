@@ -37,11 +37,11 @@ router.get('/logout', (req, res) => {
 
 
 //user routes
-router.get('/user', isAuthenticated, userController.getAllUsers);
-router.get('/user/:id', isAuthenticated, userController.getUserById);
-router.post('/user', isAuthenticated, userController.addNewUser);
-router.put('/user/:id', isAuthenticated, userController.updateUserById);
-router.delete('/user/:id', isAuthenticated, userController.deleteUserById);
+router.get('/users', isAuthenticated, userController.getAllUsers);
+router.get('/users/:id', isAuthenticated, userController.getUserById);
+router.post('/users', isAuthenticated, userController.addNewUser);
+router.put('/users/:id', isAuthenticated, userController.updateUserById);
+router.delete('/users/:id', isAuthenticated, userController.deleteUserById);
 
 
 //item routes
