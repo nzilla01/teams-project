@@ -25,15 +25,20 @@ app
         resave: false,
         saveUninitialized: true
     }))
+
     .use(passport.initialize())
+
     .use(passport.session())
+
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-key');
         next();
     })
+
     .use(cors({ methods: 'GET, POST, DELETE, OPTIONS, PATCH', origin: '*' }))
+    
     .use(express.urlencoded({ extended: true }));
  
 // Passport config
