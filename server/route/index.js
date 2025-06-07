@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
     }
     next();
     console.log('User is authenticated', req.session.user);
-}a
+}
 
 //authentication routes
 router.get('/login', passPort.authenticate('github'))
