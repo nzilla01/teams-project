@@ -1,4 +1,4 @@
-const adminController = require('../modules/admin'); // adjust path if needed
+const adminController = require('../modules/admins'); 
 
 const getAllAdmins = async (req, res) => {
     try {

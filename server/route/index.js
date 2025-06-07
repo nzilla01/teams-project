@@ -51,7 +51,6 @@ router.post('/books', isAuthenticated, itemController.addNewBook);
 router.put('/books/:id', isAuthenticated, itemController.updateBookById);
 router.delete('/books/:id', isAuthenticated, itemController.deleteBookById);
 
-
 //public routes
 router.get('/doc-link', (req, res) => {
     res.json({documentation: 'https://itemstore-api-docs.com/api-docs'});
