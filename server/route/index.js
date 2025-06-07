@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
     }
     next();
     console.log('User is authenticated', req.session.user);
-}
+}a
 
 //authentication routes
 router.get('/login', passPort.authenticate('github'))
@@ -36,20 +36,20 @@ router.get('/logout', (req, res) => {
 });
 
 
-//user routes
-router.get('/users', isAuthenticated, userController.getAllUsers);
-router.get('/users/:id', isAuthenticated, userController.getUserById);
-router.post('/users', isAuthenticated, userController.addNewUser);
-router.put('/users/:id', isAuthenticated, userController.updateUserById);
-router.delete('/users/:id', isAuthenticated, userController.deleteUserById);
+//admin routes
+router.get('/admins', isAuthenticated, userController.getAllAdmins);
+router.get('/admins/:id', isAuthenticated, userController.getAdminById);    
+router.post('/admins', isAuthenticated, userController.addNewAdmin);
+router.put('/admins/:id', isAuthenticated, userController.updateAdminById);
+router.delete('/admins/:id', isAuthenticated, userController.deleteAdminById);
 
 
-//item routes
-router.get('/items', isAuthenticated, itemController.getAllItems);
-router.get('/items/:id', isAuthenticated, itemController.getItemsById);
-router.post('/items', isAuthenticated, itemController.addNewItem);
-router.put('/items/:id', isAuthenticated, itemController.updateItemById);
-router.delete('/items/:id', isAuthenticated, itemController.deleteItemById);
+//books routes
+router.get('/books', isAuthenticated, itemController.getAllBooks);
+router.get('/books/:id', isAuthenticated, itemController.getBookById);  
+router.post('/books', isAuthenticated, itemController.addNewBook);
+router.put('/books/:id', isAuthenticated, itemController.updateBookById);
+router.delete('/books/:id', isAuthenticated, itemController.deleteBookById);
 
 
 //public routes

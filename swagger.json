@@ -11,40 +11,40 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/items": {
+    "/books": {
       "get": {
-        "summary": "Get all items in the store",
+        "summary": "Get all books",
         "responses": {
           "200": {
-            "description": "list of items",
+            "description": "List of books",
             "schema": {
               "type": "array",
-              "items": { "$ref": "#/definitions/Item" }
+              "items": { "$ref": "#/definitions/Book" }
             }
           },
-          "500": { "description": "internal server error" }
+          "500": { "description": "Internal server error" }
         }
       },
       "post": {
-        "summary": "Add a new Item",
+        "summary": "Add a new book",
         "parameters": [
           {
             "in": "body",
-            "name": "item",
+            "name": "book",
             "required": true,
-            "schema": { "$ref": "#/definitions/itemInput" }
+            "schema": { "$ref": "#/definitions/BookInput" }
           }
         ],
         "responses": {
-          "201": { "description": "item created successfully" },
-          "400": { "description": "bad request" },
-          "500": { "description": "internal server error" }
+          "201": { "description": "Book created successfully" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
-    "/items/{id}": {
+    "/books/{id}": {
       "get": {
-        "summary": "Get an item by ID",
+        "summary": "Get a book by ID",
         "parameters": [
           {
             "name": "id",
@@ -55,15 +55,15 @@
         ],
         "responses": {
           "200": {
-            "description": "item found",
-            "schema": { "$ref": "#/definitions/Item" }
+            "description": "Book found",
+            "schema": { "$ref": "#/definitions/Book" }
           },
-          "404": { "description": "item not found" },
-          "500": { "description": "internal server error" }
+          "404": { "description": "Book not found" },
+          "500": { "description": "Internal server error" }
         }
       },
       "put": {
-        "summary": "Update an item by ID",
+        "summary": "Update a book by ID",
         "parameters": [
           {
             "name": "id",
@@ -73,20 +73,20 @@
           },
           {
             "in": "body",
-            "name": "item",
+            "name": "book",
             "required": true,
-            "schema": { "$ref": "#/definitions/itemInput" }
+            "schema": { "$ref": "#/definitions/BookInput" }
           }
         ],
         "responses": {
-          "200": { "description": "item updated successfully" },
-          "400": { "description": "bad request" },
-          "404": { "description": "item not found" },
-          "500": { "description": "internal server error" }
+          "200": { "description": "Book updated successfully" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Book not found" },
+          "500": { "description": "Internal server error" }
         }
       },
       "delete": {
-        "summary": "Delete an item by ID",
+        "summary": "Delete a book by ID",
         "parameters": [
           {
             "name": "id",
@@ -96,49 +96,49 @@
           }
         ],
         "responses": {
-          "204": { "description": "item deleted successfully" },
-          "404": { "description": "item not found" },
-          "500": { "description": "internal server error" }
+          "204": { "description": "Book deleted successfully" },
+          "404": { "description": "Book not found" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
-    "/users": {
+    "/admins": {
       "get": {
-        "summary": "Get all users",
+        "summary": "Get all admins",
         "responses": {
           "200": {
-            "description": "list of users",
+            "description": "List of admins",
             "schema": {
               "type": "array",
-              "items": { "$ref": "#/definitions/User" }
+              "items": { "$ref": "#/definitions/Admin" }
             }
           },
-          "500": { "description": "internal server error" }
+          "500": { "description": "Internal server error" }
         }
       },
       "post": {
-        "summary": "Add a new user",
+        "summary": "Add a new admin",
         "parameters": [
           {
             "in": "body",
-            "name": "user",
+            "name": "admin",
             "required": true,
-            "schema": { "$ref": "#/definitions/userInput" }
+            "schema": { "$ref": "#/definitions/AdminInput" }
           }
         ],
         "responses": {
-          "201": { "description": "user created successfully" },
-          "400": { "description": "bad request" },
-          "500": { "description": "internal server error" }
+          "201": { "description": "Admin created successfully" },
+          "400": { "description": "Bad request" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
-    "/users/{userid}": {
+    "/admins/{id}": {
       "get": {
-        "summary": "Get a user by ID",
+        "summary": "Get an admin by ID",
         "parameters": [
           {
-            "name": "userid",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -146,97 +146,117 @@
         ],
         "responses": {
           "200": {
-            "description": "user found",
-            "schema": { "$ref": "#/definitions/User" }
+            "description": "Admin found",
+            "schema": { "$ref": "#/definitions/Admin" }
           },
-          "404": { "description": "user not found" },
-          "500": { "description": "internal server error" }
+          "404": { "description": "Admin not found" },
+          "500": { "description": "Internal server error" }
         }
       },
       "put": {
-        "summary": "Update a user by ID",
+        "summary": "Update an admin by ID",
         "parameters": [
           {
-            "name": "userid",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "in": "body",
-            "name": "user",
+            "name": "admin",
             "required": true,
-            "schema": { "$ref": "#/definitions/userInput" }
+            "schema": { "$ref": "#/definitions/AdminInput" }
           }
         ],
         "responses": {
-          "200": { "description": "user updated successfully" },
-          "400": { "description": "bad request" },
-          "404": { "description": "user not found" },
-          "500": { "description": "internal server error" }
+          "200": { "description": "Admin updated successfully" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Admin not found" },
+          "500": { "description": "Internal server error" }
         }
       },
       "delete": {
-        "summary": "Delete a user by ID",
+        "summary": "Delete an admin by ID",
         "parameters": [
           {
-            "name": "userid",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "204": { "description": "user deleted successfully" },
-          "404": { "description": "user not found" },
-          "500": { "description": "internal server error" }
+          "204": { "description": "Admin deleted successfully" },
+          "404": { "description": "Admin not found" },
+          "500": { "description": "Internal server error" }
         }
       }
     }
   },
   "definitions": {
-    "Item": {
+    "Book": {
       "type": "object",
-      "required": ["id", "name", "price", "description", "category"],
+      "required": [
+        "title",
+        "author",
+        "ISBN",
+        "genre",
+        "publishedYear",
+        "copiesAvailable",
+        "totalCopies"
+      ],
       "properties": {
         "id": { "type": "string" },
-        "name": { "type": "string" },
-        "price": { "type": "number" },
-        "description": { "type": "string" },
-        "category": { "type": "string" }
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "ISBN": { "type": "string" },
+        "genre": { "type": "string" },
+        "publishedYear": { "type": "integer", "format": "int32" },
+        "copiesAvailable": { "type": "integer", "format": "int32" },
+        "totalCopies": { "type": "integer", "format": "int32" }
       }
     },
-    "itemInput": {
+    "BookInput": {
       "type": "object",
-      "required": ["name", "price", "description", "category"],
+      "required": [
+        "title",
+        "author",
+        "ISBN",
+        "genre",
+        "publishedYear",
+        "copiesAvailable",
+        "totalCopies"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "price": { "type": "number" },
-        "description": { "type": "string" },
-        "category": { "type": "string" }
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "ISBN": { "type": "string" },
+        "genre": { "type": "string" },
+        "publishedYear": { "type": "integer", "format": "int32" },
+        "copiesAvailable": { "type": "integer", "format": "int32" },
+        "totalCopies": { "type": "integer", "format": "int32" }
       }
     },
-    "User": {
+    "Admin": {
       "type": "object",
-      "required": ["id", "username", "email", "firstName", "lastName", "country"],
+      "required": ["username", "email", "passwordHash", "role", "createdAt"],
       "properties": {
         "id": { "type": "string" },
         "username": { "type": "string" },
         "email": { "type": "string" },
-        "firstName": { "type": "string" },
-        "lastName": { "type": "string" },
-        "country": { "type": "string" }
+        "passwordHash": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
       }
     },
-    "userInput": {
+    "AdminInput": {
       "type": "object",
-      "required": ["username", "email", "firstName", "lastName", "country"],
+      "required": ["username", "email", "passwordHash"],
       "properties": {
         "username": { "type": "string" },
         "email": { "type": "string" },
-        "firstName": { "type": "string" },
-        "lastName": { "type": "string" },
-        "country": { "type": "string" }
+        "passwordHash": { "type": "string" }
       }
     }
   }

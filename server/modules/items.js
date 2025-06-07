@@ -1,23 +1,35 @@
 const mongoose = require('mongoose');
 
-const itemSchema = new mongoose.Schema({
-  name: {
+const bookSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true
-},
-    description: {
+  },
+  author: {
     type: String,
     required: true
-},
-    price: {
+  },
+  ISBN: {
+    type: String,
+    required: true,
+    unique: true // ISBN should be unique
+  },
+  genre: {
+    type: String,
+    required: true
+  },
+  publishedYear: {
     type: Number,
     required: true
-},
-    category: {
-    type: String,
+  },
+  copiesAvailable: {
+    type: Number,
     required: true
-},
+  },
+  totalCopies: {
+    type: Number,
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Item', itemSchema);
-
+module.exports = mongoose.model('Book', bookSchema);
