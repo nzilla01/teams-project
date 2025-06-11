@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "store api",
-    "description": "API docs for team store",
+    "title": "Store API",
+    "description": "API documentation for the Team Store project",
     "version": "2.0.0"
   },
   "host": "teams-project.onrender.com",
@@ -21,84 +21,48 @@
               "type": "array",
               "items": { "$ref": "#/definitions/Book" }
             }
-          },
-          "500": { "description": "Internal server error" }
+          }
         }
       },
       "post": {
         "summary": "Add a new book",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "book",
-            "required": true,
-            "schema": { "$ref": "#/definitions/BookInput" }
-          }
-        ],
+        "parameters": [{
+          "in": "body",
+          "name": "book",
+          "required": true,
+          "schema": { "$ref": "#/definitions/BookInput" }
+        }],
         "responses": {
-          "201": { "description": "Book created successfully" },
-          "400": { "description": "Bad request" },
-          "500": { "description": "Internal server error" }
+          "201": { "description": "Book created" }
         }
       }
     },
     "/books/{id}": {
       "get": {
         "summary": "Get a book by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
         "responses": {
           "200": {
             "description": "Book found",
             "schema": { "$ref": "#/definitions/Book" }
-          },
-          "404": { "description": "Book not found" },
-          "500": { "description": "Internal server error" }
+          }
         }
       },
       "put": {
-        "summary": "Update a book by ID",
+        "summary": "Update a book",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "book",
-            "required": true,
-            "schema": { "$ref": "#/definitions/BookInput" }
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "book", "required": true, "schema": { "$ref": "#/definitions/BookInput" } }
         ],
         "responses": {
-          "200": { "description": "Book updated successfully" },
-          "400": { "description": "Bad request" },
-          "404": { "description": "Book not found" },
-          "500": { "description": "Internal server error" }
+          "200": { "description": "Book updated" }
         }
       },
       "delete": {
-        "summary": "Delete a book by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Delete a book",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
         "responses": {
-          "204": { "description": "Book deleted successfully" },
-          "404": { "description": "Book not found" },
-          "500": { "description": "Internal server error" }
+          "204": { "description": "Book deleted" }
         }
       }
     },
@@ -112,84 +76,158 @@
               "type": "array",
               "items": { "$ref": "#/definitions/Admin" }
             }
-          },
-          "500": { "description": "Internal server error" }
+          }
         }
       },
       "post": {
         "summary": "Add a new admin",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "admin",
-            "required": true,
-            "schema": { "$ref": "#/definitions/AdminInput" }
-          }
-        ],
+        "parameters": [{
+          "in": "body",
+          "name": "admin",
+          "required": true,
+          "schema": { "$ref": "#/definitions/AdminInput" }
+        }],
         "responses": {
-          "201": { "description": "Admin created successfully" },
-          "400": { "description": "Bad request" },
-          "500": { "description": "Internal server error" }
+          "201": { "description": "Admin created" }
         }
       }
     },
     "/admins/{id}": {
       "get": {
         "summary": "Get an admin by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
         "responses": {
           "200": {
             "description": "Admin found",
             "schema": { "$ref": "#/definitions/Admin" }
-          },
-          "404": { "description": "Admin not found" },
-          "500": { "description": "Internal server error" }
+          }
         }
       },
       "put": {
-        "summary": "Update an admin by ID",
+        "summary": "Update an admin",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "admin",
-            "required": true,
-            "schema": { "$ref": "#/definitions/AdminInput" }
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "admin", "required": true, "schema": { "$ref": "#/definitions/AdminInput" } }
         ],
         "responses": {
-          "200": { "description": "Admin updated successfully" },
-          "400": { "description": "Bad request" },
-          "404": { "description": "Admin not found" },
-          "500": { "description": "Internal server error" }
+          "200": { "description": "Admin updated" }
         }
       },
       "delete": {
-        "summary": "Delete an admin by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+        "summary": "Delete an admin",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "204": { "description": "Admin deleted" }
+        }
+      }
+    },
+    "/members": {
+      "get": {
+        "summary": "Get all members",
+        "responses": {
+          "200": {
+            "description": "List of members",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Member" }
+            }
           }
+        }
+      },
+      "post": {
+        "summary": "Add a new member",
+        "parameters": [{
+          "in": "body",
+          "name": "member",
+          "required": true,
+          "schema": { "$ref": "#/definitions/MemberInput" }
+        }],
+        "responses": {
+          "201": { "description": "Member created" }
+        }
+      }
+    },
+    "/members/{id}": {
+      "get": {
+        "summary": "Get a member by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "200": {
+            "description": "Member found",
+            "schema": { "$ref": "#/definitions/Member" }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a member",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "member", "required": true, "schema": { "$ref": "#/definitions/MemberInput" } }
         ],
         "responses": {
-          "204": { "description": "Admin deleted successfully" },
-          "404": { "description": "Admin not found" },
-          "500": { "description": "Internal server error" }
+          "200": { "description": "Member updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a member",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "204": { "description": "Member deleted" }
+        }
+      }
+    },
+    "/lendingRecords": {
+      "get": {
+        "summary": "Get all lending records",
+        "responses": {
+          "200": {
+            "description": "List of lending records",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/LendingRecord" }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a lending record",
+        "parameters": [{
+          "in": "body",
+          "name": "record",
+          "required": true,
+          "schema": { "$ref": "#/definitions/LendingRecordInput" }
+        }],
+        "responses": {
+          "201": { "description": "Lending record created" }
+        }
+      }
+    },
+    "/lendingRecords/{id}": {
+      "get": {
+        "summary": "Get lending record by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "200": {
+            "description": "Lending record found",
+            "schema": { "$ref": "#/definitions/LendingRecord" }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update lending record",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "record", "required": true, "schema": { "$ref": "#/definitions/LendingRecordInput" } }
+        ],
+        "responses": {
+          "200": { "description": "Record updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete lending record",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "204": { "description": "Record deleted" }
         }
       }
     }
@@ -197,50 +235,32 @@
   "definitions": {
     "Book": {
       "type": "object",
-      "required": [
-        "title",
-        "author",
-        "ISBN",
-        "genre",
-        "publishedYear",
-        "copiesAvailable",
-        "totalCopies"
-      ],
       "properties": {
         "id": { "type": "string" },
         "title": { "type": "string" },
         "author": { "type": "string" },
         "ISBN": { "type": "string" },
         "genre": { "type": "string" },
-        "publishedYear": { "type": "integer", "format": "int32" },
-        "copiesAvailable": { "type": "integer", "format": "int32" },
-        "totalCopies": { "type": "integer", "format": "int32" }
+        "publishedYear": { "type": "integer" },
+        "copiesAvailable": { "type": "integer" },
+        "totalCopies": { "type": "integer" }
       }
     },
     "BookInput": {
       "type": "object",
-      "required": [
-        "title",
-        "author",
-        "ISBN",
-        "genre",
-        "publishedYear",
-        "copiesAvailable",
-        "totalCopies"
-      ],
+      "required": ["title", "author", "ISBN", "genre", "publishedYear", "copiesAvailable", "totalCopies"],
       "properties": {
         "title": { "type": "string" },
         "author": { "type": "string" },
         "ISBN": { "type": "string" },
         "genre": { "type": "string" },
-        "publishedYear": { "type": "integer", "format": "int32" },
-        "copiesAvailable": { "type": "integer", "format": "int32" },
-        "totalCopies": { "type": "integer", "format": "int32" }
+        "publishedYear": { "type": "integer" },
+        "copiesAvailable": { "type": "integer" },
+        "totalCopies": { "type": "integer" }
       }
     },
     "Admin": {
       "type": "object",
-      "required": ["username", "email", "passwordHash", "role", "createdAt"],
       "properties": {
         "id": { "type": "string" },
         "username": { "type": "string" },
@@ -257,6 +277,48 @@
         "username": { "type": "string" },
         "email": { "type": "string" },
         "passwordHash": { "type": "string" }
+      }
+    },
+    "Member": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "membershipStartDate": { "type": "string", "format": "date" }
+      }
+    },
+    "MemberInput": {
+      "type": "object",
+      "required": ["firstName", "lastName", "email"],
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "membershipStartDate": { "type": "string", "format": "date" }
+      }
+    },
+    "LendingRecord": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "memberId": { "type": "string" },
+        "bookId": { "type": "string" },
+        "borrowedDate": { "type": "string", "format": "date" },
+        "dueDate": { "type": "string", "format": "date" },
+        "returnedDate": { "type": "string", "format": "date" }
+      }
+    },
+    "LendingRecordInput": {
+      "type": "object",
+      "required": ["memberId", "bookId", "borrowedDate", "dueDate"],
+      "properties": {
+        "memberId": { "type": "string" },
+        "bookId": { "type": "string" },
+        "borrowedDate": { "type": "string", "format": "date" },
+        "dueDate": { "type": "string", "format": "date" },
+        "returnedDate": { "type": "string", "format": "date" }
       }
     }
   }
