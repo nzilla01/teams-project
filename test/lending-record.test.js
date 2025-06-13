@@ -26,9 +26,7 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'jane@example.com',
-      phone: '1234646464',
-      membershipStatus: 'active',
-      joinDate: new Date()
+      membershipStartDate: new Date()
     });
     await testMember.save();
 
@@ -50,8 +48,8 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
       book: testBook._id,
       borrowDate: new Date(),
       dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      status: 'borrowed',
-      returnDate : new Date()
+      returnDate: new Date(),
+      status: 'borrowed'
     });
     await record.save();
 
