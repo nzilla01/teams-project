@@ -311,15 +311,20 @@
       }
     },
     "LendingRecordInput": {
-      "type": "object",
-      "required": ["memberId", "bookId", "borrowedDate", "dueDate"],
-      "properties": {
-        "memberId": { "type": "string" },
-        "bookId": { "type": "string" },
-        "borrowedDate": { "type": "string", "format": "date" },
-        "dueDate": { "type": "string", "format": "date" },
-        "returnedDate": { "type": "string", "format": "date" }
-      }
+  "type": "object",
+  "required": ["member", "book", "dueDate"],
+  "properties": {
+    "member": { "type": "string" },
+    "book": { "type": "string" },
+    "borrowDate": { "type": "string", "format": "date" },
+    "dueDate": { "type": "string", "format": "date" },
+    "returnDate": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["borrowed", "returned", "overdue"]
     }
+  }
+}
+
   }
 }
