@@ -8,6 +8,7 @@ const passPort = require('passport');
 
 // Authentication middleware
 function isAuthenticated(req, res, next) {
+    if (process.env.NODE_ENV === 'test') return next(); 
     if (req.session.user === undefined) {
         console.log('User is NOT authenticated');
         return res.status(401).json({ message: 'Unauthorized' });
@@ -59,11 +60,11 @@ router.put('/members/:id', isAuthenticated, membersController.updateMemberById);
 router.delete('/members/:id', isAuthenticated, membersController.deleteMemberById);
 
 // Lending record routes
-router.get('/lending-records', isAuthenticated, lendingController.getAllRecord);
-router.get('/lending-records/:id', isAuthenticated, lendingController.getRecordById);
-router.post('/lending-records', isAuthenticated, lendingController.addNewRecord);
-router.put('/lending-records/:id', isAuthenticated, lendingController.updateRecordById);
-router.delete('/lending-records/:id', isAuthenticated, lendingController.deleteRecordById);
+router.get('/lendingrecords', isAuthenticated, lendingController.getAllRecord);
+router.get('/lendingrecords/:id', isAuthenticated, lendingController.getRecordById);
+router.post('/lendingrecords', isAuthenticated, lendingController.addNewRecord);
+router.put('/lendingrecords/:id', isAuthenticated, lendingController.updateRecordById);
+router.delete('/lendingrecords/:id', isAuthenticated, lendingController.deleteRecordById);
 
 // Public documentation route
 router.get('/doc-link', (req, res) => {

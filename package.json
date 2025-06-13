@@ -15,9 +15,14 @@
   "name": "teams-project",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "jest": "^30.0.0",
+    "mocha": "^11.6.0",
+    "supertest": "^7.1.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchALL --testTimeout=30000",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
