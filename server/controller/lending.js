@@ -1,6 +1,6 @@
-const LendingRecord = require('../models/lending-record');
-const Member = require('../models/member');
-const Book = require('../models/book');
+const LendingRecord = require('../modules/lending-records');
+const Member = require('../modules/members');
+const Book = require('../modules/books');
 
 // GET all lending records
 const getAllRecord = async (req, res) => {
