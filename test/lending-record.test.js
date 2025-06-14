@@ -10,12 +10,23 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
   let testMember, testBook;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_URIS);
+    await mongoose.connect(process.env.MONGO_URIS, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      dbName: 'test_db' // Optional: ensure test uses separate DB
+    });
   });
 
   afterAll(async () => {
-    // await mongoose.connection.db.dropDatabase(); // Ensures test DB is wiped, not your production DB
-    await mongoose.connection.close();
+    try {
+      if (mongoose.connection.readyState === 1) {
+        await new Promise(resolve => setTimeout(resolve, 100)); // Small delay
+        await mongoose.connection.db.dropDatabase();
+        await mongoose.connection.close();
+      }
+    } catch (error) {
+      console.error('Error during DB cleanup:', error.message);
+    }
   });
 
   it('should insert a new lending record into the LendingRecord collection', async () => {
@@ -50,11 +61,8 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
 
     // Find and populate the record
     const found = await LendingRecord.findById(record._id)
-      .populate('members')
-      .populate('books');
-
-    // Debug log (optional)
-    console.log('Found lending record:', found);
+      .populate('member')
+      .populate('book');
 
     // Assertions
     expect(found).not.toBeNull();

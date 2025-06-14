@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const lendingRecordSchema = new mongoose.Schema({
   member: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'members',
+    ref: 'Member',
     required: true
   },
   book: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'books',
+    ref: 'Book',
     required: true
   },
   borrowDate: Date,

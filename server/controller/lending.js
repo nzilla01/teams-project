@@ -1,11 +1,13 @@
-const LendingRecord = require('../modules/lending-records');
+const LendingRecord = require('../models/lending-record');
+const Member = require('../models/member');
+const Book = require('../models/book');
 
 // GET all lending records
 const getAllRecord = async (req, res) => {
   try {
     const lendbook = await LendingRecord.find()
-      .populate('members')
-      .populate('books');
+      .populate('member')
+      .populate('book');
     res.status(200).json(lendbook);
   } catch (error) {
     console.error("Error fetching lending records:", error.message);
@@ -18,8 +20,8 @@ const getRecordById = async (req, res) => {
   const { id } = req.params;
   try {
     const record = await LendingRecord.findById(id)
-      .populate('members')
-      .populate('books');
+      .populate('member')
+      .populate('book');
     if (!record) {
       return res.status(404).json({ message: 'Record not found' });
     }
@@ -35,6 +37,14 @@ const addNewRecord = async (req, res) => {
   try {
     const { memberId, bookId, borrowDate, dueDate, returnDate, status } = req.body;
 
+    // Validate member and book existence
+    const member = await Member.findById(memberId);
+    const book = await Book.findById(bookId);
+
+    if (!member || !book) {
+      return res.status(400).json({ message: 'Invalid member or book ID' });
+    }
+
     const newRecord = new LendingRecord({
       member: memberId,
       book: bookId,
@@ -46,8 +56,8 @@ const addNewRecord = async (req, res) => {
 
     const saveRecord = await newRecord.save();
     const populated = await LendingRecord.findById(saveRecord._id)
-      .populate('members')
-      .populate('books');
+      .populate('member')
+      .populate('book');
 
     res.status(201).json(populated);
     console.log('Record Added:', populated);
@@ -64,7 +74,7 @@ const updateRecordById = async (req, res) => {
     const updatedRecord = await LendingRecord.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true
-    }).populate('members').populate('books');
+    }).populate('member').populate('book');
 
     if (!updatedRecord) {
       return res.status(404).json({ message: 'Record not found' });
