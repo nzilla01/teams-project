@@ -10,7 +10,7 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
   let testMember, testBook;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URIS);
   });
 
   afterAll(async () => {

@@ -6,7 +6,7 @@ jest.setTimeout(30000);
 
 describe('Book Collection Tests (Mongoose)', () => {
   beforeAll(async () => {
-    const uri = process.env.MONGO_URI;
+    const uri = process.env.MONGO_URIS;
     await mongoose.connect(uri); // Clean, modern connect
   });
 

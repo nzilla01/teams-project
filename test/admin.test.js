@@ -7,7 +7,7 @@ jest.setTimeout(30000); // 20 seconds timeout
 
 describe('Admin Collection Tests (Mongoose)', () => {
   beforeAll(async () => {
-    const uri = process.env.MONGO_URI;
+    const uri = process.env.MONGO_URIS;
     if (!uri) throw new Error('Missing MONGO_URI env variable');
 
     await mongoose.connect(uri);
