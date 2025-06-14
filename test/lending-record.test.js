@@ -4,7 +4,7 @@ const Member = require('../server/modules/members');
 const Book = require('../server/modules/books');
 const LendingRecord = require('../server/modules/lending-records');
 
-jest.setTimeout(30000); 
+jest.setTimeout(30000);
 
 describe('LendingRecord Collection Tests (Mongoose)', () => {
   let testMember, testBook;
@@ -14,24 +14,21 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
   });
 
   afterAll(async () => {
-    await LendingRecord.deleteMany({});
-    await Member.deleteMany({});
-    await Book.deleteMany({});
+    // await mongoose.connection.db.dropDatabase(); // Ensures test DB is wiped, not your production DB
     await mongoose.connection.close();
   });
 
   it('should insert a new lending record into the LendingRecord collection', async () => {
-    // Create and save a member
-    testMember = new Member({
+    // Create and save a test member
+    testMember = await new Member({
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'jane@example.com',
       membershipStartDate: new Date()
-    });
-    await testMember.save();
+    }).save();
 
-    // Create and save a book
-    testBook = new Book({
+    // Create and save a test book
+    testBook = await new Book({
       title: 'Sample Book',
       author: 'John Smith',
       genre: 'Fiction',
@@ -39,26 +36,30 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
       copiesAvailable: 3,
       ISBN: '123456789016',
       totalCopies: 5
-    });
-    await testBook.save();
+    }).save();
 
     // Create and save a lending record
-    const record = new LendingRecord({
+    const record = await new LendingRecord({
       member: testMember._id,
       book: testBook._id,
       borrowDate: new Date(),
       dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       returnDate: new Date(),
       status: 'borrowed'
-    });
-    await record.save();
+    }).save();
 
-    // Populate and assert
+    // Find and populate the record
     const found = await LendingRecord.findById(record._id)
-      .populate('member')
-      .populate('book');
+      .populate('members')
+      .populate('books');
 
+    // Debug log (optional)
+    console.log('Found lending record:', found);
+
+    // Assertions
     expect(found).not.toBeNull();
+    expect(found.member).not.toBeNull();
+    expect(found.book).not.toBeNull();
     expect(found.member.firstName).toBe('Jane');
     expect(found.book.title).toBe('Sample Book');
     expect(found.status).toBe('borrowed');

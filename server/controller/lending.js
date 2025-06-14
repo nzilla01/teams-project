@@ -4,8 +4,8 @@ const LendingRecord = require('../modules/lending-records');
 const getAllRecord = async (req, res) => {
   try {
     const lendbook = await LendingRecord.find()
-      .populate('member')
-      .populate('book');
+      .populate('members')
+      .populate('books');
     res.status(200).json(lendbook);
   } catch (error) {
     console.error("Error fetching lending records:", error.message);
@@ -18,8 +18,8 @@ const getRecordById = async (req, res) => {
   const { id } = req.params;
   try {
     const record = await LendingRecord.findById(id)
-      .populate('member')
-      .populate('book');
+      .populate('members')
+      .populate('books');
     if (!record) {
       return res.status(404).json({ message: 'Record not found' });
     }
@@ -46,8 +46,8 @@ const addNewRecord = async (req, res) => {
 
     const saveRecord = await newRecord.save();
     const populated = await LendingRecord.findById(saveRecord._id)
-      .populate('member')
-      .populate('book');
+      .populate('members')
+      .populate('books');
 
     res.status(201).json(populated);
     console.log('Record Added:', populated);
@@ -64,7 +64,7 @@ const updateRecordById = async (req, res) => {
     const updatedRecord = await LendingRecord.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true
-    }).populate('member').populate('book');
+    }).populate('members').populate('books');
 
     if (!updatedRecord) {
       return res.status(404).json({ message: 'Record not found' });

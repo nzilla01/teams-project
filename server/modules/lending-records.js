@@ -3,25 +3,17 @@ const mongoose = require('mongoose');
 const lendingRecordSchema = new mongoose.Schema({
   member: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Member',
+    ref: 'members',
     required: true
   },
   book: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Book',  
+    ref: 'books',
     required: true
   },
-  borrowDate: {
-    type: Date,
-    default: Date.now
-  },
-  dueDate: {
-    type: Date,
-    required: true
-  },
-  returnDate: {
-    type: Date
-  },
+  borrowDate: Date,
+  dueDate: Date,
+  returnDate: Date,
   status: {
     type: String,
     enum: ['borrowed', 'returned', 'overdue'],
