@@ -38,12 +38,12 @@ const addNewRecord = async (req, res) => {
   try {
     const { memberId, bookId, borrowDate, dueDate, returnDate, status } = req.body;
 
-    // ✅ Validate ObjectId format before querying the DB
+    // Validate ObjectId format before querying the DB
     if (!mongoose.Types.ObjectId.isValid(memberId) || !mongoose.Types.ObjectId.isValid(bookId)) {
       return res.status(400).json({ message: 'Invalid member or book ID format' });
     }
 
-    // ✅ Find actual member and book
+    //  Find actual member and book
     const member = await Member.findById(memberId);
     const book = await Book.findById(bookId);
 

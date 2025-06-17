@@ -18,6 +18,11 @@ const lendingRecordSchema = new mongoose.Schema({
     type: String,
     enum: ['borrowed', 'returned', 'overdue'],
     default: 'borrowed'
+  }, 
+   remarks: {
+    type: String,
+    trim: true,
+    default: ''
   }
 });
 

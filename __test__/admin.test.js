@@ -1,9 +1,8 @@
 require('dotenv').config(); // get the env file
-
 const mongoose = require('mongoose');
 const Admin = require('../server/modules/admins'); //get the collection
 
-jest.setTimeout(30000); // 20 seconds timeout
+jest.setTimeout(30000); // 30 seconds timeout
 
 describe('Admin Collection Tests (Mongoose)', () => {
   beforeAll(async () => {
