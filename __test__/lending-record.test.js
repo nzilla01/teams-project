@@ -13,7 +13,7 @@ describe('LendingRecord Collection Tests (Mongoose)', () => {
     await mongoose.connect(process.env.MONGO_URIS, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName: 'test_db' // Optional: ensure test uses separate DB
+      // dbName: 'test' 
     });
   });
 

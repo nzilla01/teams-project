@@ -8,12 +8,13 @@ describe('Book Collection Tests (Mongoose)', () => {
   beforeAll(async () => {
     const uri = process.env.MONGO_URIS;
     await mongoose.connect(uri); // Clean, modern connect
+    // dbName = 'test'
   });
 
-  afterAll(async () => {
-    await mongoose.connection.dropDatabase(); // optional cleanup
-    await mongoose.connection.close();
-  });
+  // afterAll(async () => {
+  //   await mongoose.connection.dropDatabase(); // optional cleanup
+  //   await mongoose.connection.close();
+  // });
 
   it('should insert a new book into the Book collection', async () => {
     const mockBook = {
@@ -33,5 +34,6 @@ describe('Book Collection Tests (Mongoose)', () => {
     expect(foundBook.title).toBe('The JavaScript Mastery');
     expect(foundBook.author).toBe('Nsikak Okon');
     expect(foundBook.genre).toBe('Programming');
+  
   });
 });

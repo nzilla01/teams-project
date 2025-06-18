@@ -10,12 +10,13 @@ describe('Member Collection Tests (Mongoose)', () => {
     const uri = process.env.MONGO_URIS;
     if (!uri) throw new Error('Missing MONGO_URI env variable');
     await mongoose.connect(uri);
+    //  dbName:'test'
   });
 
-  afterAll(async () => {
-    await mongoose.connection.dropDatabase();
-    await mongoose.connection.close();
-  });
+  // afterAll(async () => {
+  //   await mongoose.connection.dropDatabase();
+  //   await mongoose.connection.close();
+  // });
 
   it('should insert a new member into the Member collection', async () => {
     const newMember = {
