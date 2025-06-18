@@ -268,7 +268,7 @@
         "passwordHash": { "type": "string" },
         "role": { "type": "string", "enum": ["admin"] },
         "createdAt": { "type": "string", "format": "date-time" },
-        "isActive":{"type":"string" : "Active"}
+        "isActive":{"type":"boolean", "default": "true"}
       }
     },
     "AdminInput": {
