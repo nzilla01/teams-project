@@ -13,10 +13,10 @@ describe('Member Collection Tests (Mongoose)', () => {
     //  dbName:'test'
   });
 
-  // afterAll(async () => {
-  //   await mongoose.connection.dropDatabase();
-  //   await mongoose.connection.close();
-  // });
+  afterAll(async () => {
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.close();
+  });
 
   it('should insert a new member into the Member collection', async () => {
     const newMember = {

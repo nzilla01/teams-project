@@ -267,7 +267,8 @@
         "email": { "type": "string" },
         "passwordHash": { "type": "string" },
         "role": { "type": "string", "enum": ["admin"] },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "createdAt": { "type": "string", "format": "date-time" },
+        "isActive":{"type":"string" : "Active"}
       }
     },
     "AdminInput": {
@@ -277,6 +278,7 @@
         "username": { "type": "string" },
         "email": { "type": "string" },
         "passwordHash": { "type": "string" }
+
       }
     },
     "Member": {
